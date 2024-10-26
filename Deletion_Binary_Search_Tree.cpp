@@ -20,6 +20,7 @@ void inorderTraversal(Node *root) {
 }
 
 Node *inorderPredecessor(Node *root) {
+    // Left subtree's right most child is the inorder predecessor
     root = root->left;
     while (root->right != NULL) {
         root = root->right;
@@ -48,10 +49,10 @@ Node *deleteNode(Node *root, int value) {
     else {
         // If we found the node to be deleted
         iPre = inorderPredecessor(root); // Calculating the inorder predecessor
-        root->data = iPre->data; 
+        root->data = iPre->data; // Swapping the data of the node to be deleted with inorder predecessor's value
         root->left = deleteNode(root->left, iPre->data); // Deleting the inorder predecessor's value
     }
-    return root;
+    return root; // Returning the root node
 }
 
 int main() {
